@@ -1,6 +1,7 @@
 from base import MotorDeEventos
 from eventos import Arquivo
 from SistemaDeArquivos import SistemaDeArquivos
+from FiltroAscii import FiltroAscii
 from AnalisadorLexico import AnalisadorLexico
 
 def loopDeSimulação(t = 0, *args):
@@ -15,7 +16,7 @@ def loopDeSimulação(t = 0, *args):
 	return
 
 listaDeArquivos1=[Arquivo(tempo=0,path='./arquivo1.txt'),Arquivo(tempo=100,path='./arquivo2.txt')]
-analisadorLexico = AnalisadorLexico()
-sistemaDeArquivos = SistemaDeArquivos(listaInicial=listaDeArquivos1,analisadorLexico=analisadorLexico)
+filtroAscii = FiltroAscii()
+sistemaDeArquivos = SistemaDeArquivos(listaInicial=listaDeArquivos1,filtroAscii=filtroAscii)
 t = 0
-loopDeSimulação(t, sistemaDeArquivos, analisadorLexico)
+loopDeSimulação(t, sistemaDeArquivos, filtroAscii)

@@ -3,7 +3,7 @@ from eventos import Arquivo
 from eventos import ProximaLinha
 from eventos import FecharArquivo
 from eventos import Linha
-from AnalisadorLexico import AnalisadorLexico
+from FiltroAscii import FiltroAscii
 
 
 def abrirArquivo(sistemaDeArquivos, arquivo, tempo):
@@ -17,7 +17,7 @@ def lerProximaLinha(sistemaDeArquivos, proximaLinha, tempo):
 	log = "Linha Lida: {0}".format(linhaAtual)
 	sistemaDeArquivos.logar(tempo,log)
 	if linhaAtual != '':
-		sistemaDeArquivos.analisadorLexico.lista.append(Linha(tempo=tempo+1,conteudo=linhaAtual))
+		sistemaDeArquivos.filtroAscii.lista.append(Linha(tempo=tempo+1,conteudo=linhaAtual))
 		sistemaDeArquivos.lista.insert(0,ProximaLinha(tempo=tempo+1))
 	else:
 		sistemaDeArquivos.lista.insert(0,FecharArquivo(tempo=tempo+1))
@@ -34,8 +34,8 @@ class SistemaDeArquivos(MotorDeEventos):
 				 rotinasDeTratamento={type(Arquivo()):abrirArquivo,
 				 					  type(ProximaLinha()):lerProximaLinha,
 				 					  type(FecharArquivo()):fecharArquivo},
-				 analisadorLexico = AnalisadorLexico()):
+				 filtroAscii = FiltroAscii()):
 		super().__init__(listaInicial,rotinasDeTratamento)
-		self.analisadorLexico = analisadorLexico
+		self.filtroAscii = filtroAscii
 
 		
