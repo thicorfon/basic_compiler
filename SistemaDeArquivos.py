@@ -3,6 +3,7 @@ from eventos import Arquivo
 from eventos import ProximaLinha
 from eventos import FecharArquivo
 from eventos import Linha
+from eventos import FimDeArquivo
 from FiltroAscii import FiltroAscii
 
 
@@ -21,6 +22,7 @@ def lerProximaLinha(sistemaDeArquivos, proximaLinha, tempo):
 		sistemaDeArquivos.lista.insert(0,ProximaLinha(tempo=tempo+1))
 	else:
 		sistemaDeArquivos.lista.insert(0,FecharArquivo(tempo=tempo+1))
+		sistemaDeArquivos.filtroAscii.lista.append(FimDeArquivo(tempo=tempo+1))
 
 def fecharArquivo(sistemaDeArquivos, fecharArquivoE, tempo):
 	sistemaDeArquivos.arquivoAtual.close()
