@@ -36,6 +36,38 @@ class AsciiControle(Evento):
 	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
  		super().__init__(tempo,tarefa)
  		self.conteudo = conteudo
- 		
+
+class AsciiDescartavel(Evento):
+	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+#############################################################################
+
+
+class Delimitador(Evento):
+ 	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+class Letra(Evento):
+ 	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+class Digito(Evento):
+ 	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+class Especial(Evento):
+ 	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+class Controle(Evento):
+ 	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
 
 

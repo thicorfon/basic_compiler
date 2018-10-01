@@ -2,14 +2,14 @@ from base import MotorDeEventos
 from eventos import Linha
 from eventos import FimDeArquivo
 
-def lerLinha(analisadorLexico,Linha,tempo):
+def lerLinha(categorizadorLexico,Linha,tempo):
 	log = "A linha recebida eh: {0}".format(Linha.conteudo)
-	analisadorLexico.logar(tempo,log)
+	categorizadorLexico.logar(tempo,log)
 
 
-class AnalisadorLexico(MotorDeEventos):
+class CategorizadorLexico(MotorDeEventos):
 	def __init__(self,
 				 listaInicial=[],
-				 rotinasDeTratamento={type(Linha()):lerLinha}):
+				 rotinasDeTratamento={}):
 		super().__init__(listaInicial,rotinasDeTratamento)
 		
