@@ -2,6 +2,7 @@ from base import MotorDeEventos
 from eventos import Arquivo
 from SistemaDeArquivos import SistemaDeArquivos
 from FiltroAscii import FiltroAscii
+from CategorizadorAscii import CategorizadorAscii
 from AnalisadorLexico import AnalisadorLexico
 
 def loopDeSimulação(t = 0, *args):
@@ -15,8 +16,9 @@ def loopDeSimulação(t = 0, *args):
 		t+=1
 	return
 
-listaDeArquivos1=[Arquivo(tempo=0,path='./arquivo1.txt'),Arquivo(tempo=100,path='./arquivo2.txt')]
-filtroAscii = FiltroAscii()
+listaDeArquivos1=[Arquivo(tempo=0,path='./arquivo1.txt')]#,Arquivo(tempo=100,path='./arquivo2.txt')]
+categorizadorAscii = CategorizadorAscii()
+filtroAscii = FiltroAscii(categorizadorAscii=categorizadorAscii)
 sistemaDeArquivos = SistemaDeArquivos(listaInicial=listaDeArquivos1,filtroAscii=filtroAscii)
 t = 0
-loopDeSimulação(t, sistemaDeArquivos, filtroAscii)
+loopDeSimulação(t, sistemaDeArquivos, filtroAscii, categorizadorAscii)
