@@ -71,3 +71,20 @@ class Controle(Evento):
  		self.conteudo = conteudo
 
 
+#############################################################################
+
+class TokenId(Evento):
+	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+class TokenNumero(Evento):
+	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+class TokenEspecial(Evento):
+	def __init__(self, tempo=0, tarefa='T0', conteudo=''):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
