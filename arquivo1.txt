@@ -1,4 +1,4 @@
-AB23 := 0
+AB23 := 42
 X := 5
 LOOP: AB23 := AB23 + X
 GO TO LOOP
