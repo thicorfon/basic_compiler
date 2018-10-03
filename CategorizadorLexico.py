@@ -10,34 +10,32 @@ from eventos import TokenEspecial
 from RecategorizadorLexico import RecategorizadorLexico
 import sys
 
-def nada(categorizadorLexico,evento,tempo):
+def rodarAutomato(categorizadorLexico,evento,tempo):
 	proximoEstado = categorizadorLexico.automato[categorizadorLexico.estadoAtual][type(evento)]
 	if proximoEstado == 'final':
 		token_content = categorizadorLexico.acumulador
+		
 		if categorizadorLexico.estadoAtual == 'E0':
 			categorizadorLexico.acumulador = ''
 		
-		elif categorizadorLexico.estadoAtual == 'E1' or categorizadorLexico.estadoAtual == 'E2':
-			categorizadorLexico.recategorizadorLexico.lista.append(TokenId(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
-			categorizadorLexico.estadoAtual = 'E0'
-			categorizadorLexico.acumulador = ''
-			nada(categorizadorLexico,evento,tempo)
+		else:
+			if categorizadorLexico.estadoAtual == 'E1' or categorizadorLexico.estadoAtual == 'E2':
+				categorizadorLexico.recategorizadorLexico.lista.append(TokenId(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
 
-		elif categorizadorLexico.estadoAtual == 'E3':
-			categorizadorLexico.recategorizadorLexico.lista.append(TokenNumero(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
-			categorizadorLexico.estadoAtual = 'E0'
-			categorizadorLexico.acumulador = ''
-			nada(categorizadorLexico,evento,tempo)
+			elif categorizadorLexico.estadoAtual == 'E3':
+				categorizadorLexico.recategorizadorLexico.lista.append(TokenNumero(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
 
-		elif categorizadorLexico.estadoAtual == 'E4':
-			categorizadorLexico.recategorizadorLexico.lista.append(TokenEspecial(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
-			categorizadorLexico.estadoAtual = 'E0'
-			categorizadorLexico.acumulador = ''
-			nada(categorizadorLexico,evento,tempo)
+			elif categorizadorLexico.estadoAtual == 'E4':
+				categorizadorLexico.recategorizadorLexico.lista.append(TokenEspecial(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
 
+		categorizadorLexico.estadoAtual = 'E0'
+		categorizadorLexico.acumulador = ''
+		rodarAutomato(categorizadorLexico,evento,tempo)
+	
 	elif proximoEstado == 'erro':
 		categorizadorLexico.logar(tempo,'Token "{0}" invalido'.format(categorizadorLexico.acumulador+evento.conteudo))
 		sys.exit()
+	
 	else:
 		categorizadorLexico.acumulador += evento.conteudo
 		categorizadorLexico.estadoAtual = proximoEstado
@@ -45,11 +43,11 @@ def nada(categorizadorLexico,evento,tempo):
 class CategorizadorLexico(MotorDeEventos):
 	def __init__(self,
 				 listaInicial=[],
-				 rotinasDeTratamento={type(Delimitador()):nada,
-				 					  type(Digito()):nada,
-				 					  type(Letra()):nada,
-				 					  type(Especial()):nada,
-				 					  type(Controle()):nada},
+				 rotinasDeTratamento={type(Delimitador()):rodarAutomato,
+				 					  type(Digito()):rodarAutomato,
+				 					  type(Letra()):rodarAutomato,
+				 					  type(Especial()):rodarAutomato,
+				 					  type(Controle()):rodarAutomato},
 				 
 				 automato={'E0':{type(Delimitador()):'final',
 				 				 type(Letra()):'E1',
