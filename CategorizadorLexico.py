@@ -28,9 +28,9 @@ def rodarAutomato(categorizadorLexico,evento,tempo):
 			elif categorizadorLexico.estadoAtual == 'E4':
 				categorizadorLexico.recategorizadorLexico.lista.append(TokenEspecial(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
 
-		categorizadorLexico.estadoAtual = 'E0'
-		categorizadorLexico.acumulador = ''
-		rodarAutomato(categorizadorLexico,evento,tempo)
+			categorizadorLexico.estadoAtual = 'E0'
+			categorizadorLexico.acumulador = ''
+			rodarAutomato(categorizadorLexico,evento,tempo)
 	
 	elif proximoEstado == 'erro':
 		categorizadorLexico.logar(tempo,'Token "{0}" invalido'.format(categorizadorLexico.acumulador+evento.conteudo))
