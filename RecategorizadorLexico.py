@@ -4,14 +4,13 @@ from eventos import TokenId
 from eventos import TokenNumero
 from eventos import TokenEspecial
 from eventos import TokenReservado
+from eventos import TokenLinha
 from constants import palavrasReservadas
 
 
-def rodarAutomato(recategorizadorLexico,evento,tempo):
-	log='O token recebido eh do tipo {0} e seu conteudo eh {1}'.format(type(evento),evento.conteudo)
-	recategorizadorLexico.logar(tempo,log)
+def rodarAutomato2(recategorizadorLexico,evento,tempo):
 	if recategorizadorLexico.estadoAtual == 'E0':
-		if type(evento) == type(TokenNumero()) or type(evento) == type(TokenEspecial()):
+		if type(evento) == type(TokenNumero()) or type(evento) == type(TokenEspecial()) or type(evento) == type(TokenLinha()):
 			evento.tempo += 1
 			recategorizadorLexico.categorizadorSintatico.lista.append(evento)
 		else:
@@ -38,13 +37,19 @@ def rodarAutomato(recategorizadorLexico,evento,tempo):
 		recategorizadorLexico.estadoAtual = 'E0'
 		recategorizadorLexico.acumulador = ''
 
+def rodarAutomato(recategorizadorLexico,evento,tempo):
+	log='O token recebido eh do tipo {0} e seu conteudo eh {1}'.format(type(evento),evento.conteudo)
+	#recategorizadorLexico.logar(tempo,log)
+	rodarAutomato2(recategorizadorLexico,evento,tempo)
+
 
 class RecategorizadorLexico(MotorDeEventos):
 	def __init__(self,
 				 listaInicial=[],
 				 rotinasDeTratamento={type(TokenId()):rodarAutomato,
 				 					  type(TokenNumero()):rodarAutomato,
-				 					  type(TokenEspecial()):rodarAutomato},
+				 					  type(TokenEspecial()):rodarAutomato,
+				 					  type(TokenLinha()):rodarAutomato},
 				 categorizadorSintatico=CategorizadorSintatico(),
 				 acumulador = '',
 				 estadoInicial = 'E0'):

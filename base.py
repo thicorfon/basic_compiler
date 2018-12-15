@@ -20,7 +20,7 @@ class MotorDeEventos(object):
 		return
 
 	def logar(self,tempo,log):
-		print("Tempo: {0}\nMaquina: {1}\nLog: {2}\n\n".format(str(tempo),str(type(self)),log))
+		print("\nTempo: {0}\nMaquina: {1}\nLog: {2}".format(str(tempo),str(type(self)),log))
 		
 
 

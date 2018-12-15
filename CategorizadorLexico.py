@@ -7,10 +7,13 @@ from eventos import Controle
 from eventos import TokenId
 from eventos import TokenNumero
 from eventos import TokenEspecial
+from eventos import TokenLinha
 from RecategorizadorLexico import RecategorizadorLexico
 import sys
 
-def rodarAutomato(categorizadorLexico,evento,tempo):
+
+
+def rodarAutomato2(categorizadorLexico,evento,tempo):
 	proximoEstado = categorizadorLexico.automato[categorizadorLexico.estadoAtual][type(evento)]
 	if proximoEstado == 'final':
 		token_content = categorizadorLexico.acumulador
@@ -21,16 +24,24 @@ def rodarAutomato(categorizadorLexico,evento,tempo):
 		else:
 			if categorizadorLexico.estadoAtual == 'E1' or categorizadorLexico.estadoAtual == 'E2':
 				categorizadorLexico.recategorizadorLexico.lista.append(TokenId(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
+				if evento.conteudo == '\n':
+					categorizadorLexico.recategorizadorLexico.lista.append(TokenLinha(tempo=tempo+1))
 
 			elif categorizadorLexico.estadoAtual == 'E3':
 				categorizadorLexico.recategorizadorLexico.lista.append(TokenNumero(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
+				if evento.conteudo == '\n':
+					categorizadorLexico.recategorizadorLexico.lista.append(TokenLinha(tempo=tempo+1))
 
 			elif categorizadorLexico.estadoAtual == 'E4':
 				categorizadorLexico.recategorizadorLexico.lista.append(TokenEspecial(tempo=tempo+1,conteudo=categorizadorLexico.acumulador))
+				if evento.conteudo == '\n':
+					categorizadorLexico.recategorizadorLexico.lista.append(TokenLinha(tempo=tempo+1))
 
 			categorizadorLexico.estadoAtual = 'E0'
 			categorizadorLexico.acumulador = ''
-			rodarAutomato(categorizadorLexico,evento,tempo)
+			rodarAutomato2(categorizadorLexico,evento,tempo)
+
+
 	
 	elif proximoEstado == 'erro':
 		categorizadorLexico.logar(tempo,'Token "{0}" invalido'.format(categorizadorLexico.acumulador+evento.conteudo))
@@ -39,6 +50,11 @@ def rodarAutomato(categorizadorLexico,evento,tempo):
 	else:
 		categorizadorLexico.acumulador += evento.conteudo
 		categorizadorLexico.estadoAtual = proximoEstado
+
+def rodarAutomato(categorizadorLexico,evento,tempo):
+	log = 'O caracter recebido foi:{0} do tipo {1}'.format(evento.conteudo,str(type(evento)))
+	#categorizadorLexico.logar(tempo,log)
+	rodarAutomato2(categorizadorLexico,evento,tempo)
 
 class CategorizadorLexico(MotorDeEventos):
 	def __init__(self,

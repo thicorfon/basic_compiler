@@ -15,7 +15,7 @@ from eventos import Controle
 
 def categorizarAsciiUtil(categorizadorAscii,asciiUtil,tempo):
 	log = 'O caracter recebido foi:{0} do tipo {1}'.format(asciiUtil.conteudo,str(type(asciiUtil)))
-	categorizadorAscii.logar(tempo,log)
+	#categorizadorAscii.logar(tempo,log)
 	if asciiUtil.conteudo in digits:
 		categorizadorAscii.categorizadorLexico.lista.append(Digito(tempo=tempo+1,conteudo=asciiUtil.conteudo))
 	elif asciiUtil.conteudo in special:
@@ -25,12 +25,12 @@ def categorizarAsciiUtil(categorizadorAscii,asciiUtil,tempo):
 
 def categorizarAsciiControle(categorizadorAscii,asciiControle,tempo):
 	log = 'O caracter recebido foi:{0} do tipo {1}'.format(asciiControle.conteudo,str(type(asciiControle)))
-	categorizadorAscii.logar(tempo,log)
+	#categorizadorAscii.logar(tempo,log)
 	categorizadorAscii.categorizadorLexico.lista.append(Controle(tempo=tempo+1,conteudo=asciiControle.conteudo))
 
 def categorizarAsciiDescartavel(categorizadorAscii,asciiDescartavel,tempo):
 	log = 'O caracter recebido foi:{0} do tipo {1}'.format(asciiDescartavel.conteudo,str(type(asciiDescartavel)))
-	categorizadorAscii.logar(tempo,log)
+	#categorizadorAscii.logar(tempo,log)
 	categorizadorAscii.categorizadorLexico.lista.append(Delimitador(tempo=tempo+1,conteudo=asciiDescartavel.conteudo))	
 
 

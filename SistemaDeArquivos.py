@@ -10,13 +10,13 @@ from FiltroAscii import FiltroAscii
 def abrirArquivo(sistemaDeArquivos, arquivo, tempo):
 	sistemaDeArquivos.arquivoAtual = open(arquivo.path)
 	log = "Arquivo {0} aberto".format(arquivo.path)
-	sistemaDeArquivos.logar(tempo,log)
+	#sistemaDeArquivos.logar(tempo,log)
 	sistemaDeArquivos.lista.insert(0,ProximaLinha(tempo=tempo +1))
 
 def lerProximaLinha(sistemaDeArquivos, proximaLinha, tempo):
 	linhaAtual = sistemaDeArquivos.arquivoAtual.readline()
 	log = "Linha Lida: {0}".format(linhaAtual)
-	sistemaDeArquivos.logar(tempo,log)
+	#sistemaDeArquivos.logar(tempo,log)
 	if linhaAtual != '':
 		sistemaDeArquivos.filtroAscii.lista.append(Linha(tempo=tempo+1,conteudo=linhaAtual))
 		sistemaDeArquivos.lista.insert(0,ProximaLinha(tempo=tempo+1))
@@ -27,7 +27,7 @@ def lerProximaLinha(sistemaDeArquivos, proximaLinha, tempo):
 def fecharArquivo(sistemaDeArquivos, fecharArquivoE, tempo):
 	sistemaDeArquivos.arquivoAtual.close()
 	log = "Arquivo fechado"
-	sistemaDeArquivos.logar(tempo,log)
+	#sistemaDeArquivos.logar(tempo,log)
 
 
 class SistemaDeArquivos(MotorDeEventos):

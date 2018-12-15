@@ -22,7 +22,7 @@ def lerLinha(filtroAscii,Linha,tempo):
 		else:
 			filtroAscii.categorizadorAscii.lista.append(AsciiControle(tempo=tempo+1,conteudo=i))
 	log = "A linha recebida eh: {0}".format(Linha.conteudo)
-	filtroAscii.logar(tempo,log)
+	#filtroAscii.logar(tempo,log)
 
 
 def finalizarArquivo(filtroAscii,fimDeArquivo,tempo):

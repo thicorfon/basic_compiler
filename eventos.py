@@ -88,6 +88,12 @@ class TokenEspecial(Evento):
  		super().__init__(tempo,tarefa)
  		self.conteudo = conteudo
 
+class TokenLinha(Evento):
+	def __init__(self, tempo=0, tarefa='T0', conteudo='\n'):
+ 		super().__init__(tempo,tarefa)
+ 		self.conteudo = conteudo
+
+
 ##########################################################################################
 
 class TokenReservado(Evento):
