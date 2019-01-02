@@ -38,9 +38,9 @@ X2 DS /1
 T1 DS /1
 T2 DS /1
 X3 DS /1
+T3 DS /1
+T4 DS /1
 T5 DS /1
 T6 DS /1
 T7 DS /1
-T3 DS /1
-T4 DS /1
  END 00

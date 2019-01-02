@@ -18,7 +18,7 @@ def loopDeSimulação(t = 0, *args):
 		t+=1
 	return
 
-listaDeArquivos1=[Arquivo(tempo=0,path='./testes/testeSemantico5.txt')]#,Arquivo(tempo=100,path='./arquivo2.txt')]
+listaDeArquivos1=[Arquivo(tempo=0,path='./testes/testeSemantico4.txt')]#,Arquivo(tempo=100,path='./arquivo2.txt')]
 categorizadorSintatico = CategorizadorSintatico()
 recategorizadorLexico = RecategorizadorLexico(categorizadorSintatico=categorizadorSintatico)
 categorizadorLexico = CategorizadorLexico(recategorizadorLexico = recategorizadorLexico)

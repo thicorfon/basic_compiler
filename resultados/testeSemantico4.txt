@@ -19,19 +19,19 @@
  MM T3
  LD T1
  MM I
-10 LD X1
+10 LV /00
  MM T6
- LD X2
- MM T7
  LV /0
  + T6
- * T7
- MM X1
-14 LV /00
+ MM X2
+14 LD X1
+ MM T7
+ LD X2
  MM T8
  LV /0
- + T8
- MM X2
+ + T7
+ * T8
+ MM X1
 15 LV /00
  MM T12
  LV /0
@@ -77,9 +77,9 @@ I DS /1
 T4 DS /1
 T5 DS /1
 T3 DS /1
+X2 DS /1
 T6 DS /1
 T7 DS /1
-X2 DS /1
 T8 DS /1
 T9 DS /1
 T10 DS /1
